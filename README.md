@@ -1,3 +1,19 @@
+## Why gitpillage? ##
+I thought it would be useful to automate some other techniques I found to extract code, configs and other information from a git repo identified in a web root that was not 100% cloneable. Gitpillage extracts as much knowledge about the repo as possible through predictable file names and known object hashes.
+
+
+## Requirements ##
+Basic requirements usually fulfilled by any *nix system.
+* bash
+* wget
+* grep
+* awk
+
+
+## Usage ##
+Edit `gitpillage.sh` and set the `host` variable near the top of script. If the git repo is in a sub directory set that in the `dir` then run `./gitpillage.sh`
+
+
 ## License ##
 
 Written by [Adam Baldwin](http://github.com/evilpacket).
