@@ -45,7 +45,7 @@ getsha `cat .git/$ref`
 
 #5 - get index
 get "index"
-exit
+
 #6 - Try and download objects based on sha values
 for line in `git ls-files --stage|awk '{print $2}'`
 do
