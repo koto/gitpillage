@@ -3,7 +3,9 @@ I thought it would be useful to automate some other techniques I found to extrac
 
 
 ## Requirements ##
+
 Basic requirements usually fulfilled by any *nix system.
+
 * bash
 * wget
 * grep
