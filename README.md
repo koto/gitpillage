@@ -25,7 +25,7 @@ Example:
 
 
 ## Contributors ##
-[wraithgar]
+[Michael Garvin](http://github.com/wraithgar)
 
 ## License ##
 
