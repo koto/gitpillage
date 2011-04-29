@@ -7,14 +7,26 @@ I thought it would be useful to automate some other techniques I found to extrac
 Basic requirements usually fulfilled by any *nix system.
 
 * bash
-* wget
+* wget or curl
 * grep
 * awk
 
 
 ## Usage ##
+    gitpillage.sh hostname/directory
+    (directory is optional)
+
+Example:
+
+    `gitpillage.sh www.example.com/images (would crawl http://example.com/images/.git/)`
+
+    `gitpillage.sh www.example.com (would crawl http://example.com/.git/)`
+
+
 Edit `gitpillage.sh` and set the `host` variable near the top of script. If the git repo is in a sub directory set that in the `dir` then run `./gitpillage.sh`
 
+## Contributors ##
+@wraithgar
 
 ## License ##
 
