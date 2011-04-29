@@ -23,10 +23,9 @@ Example:
     `gitpillage.sh www.example.com (would crawl http://example.com/.git/)`
 
 
-Edit `gitpillage.sh` and set the `host` variable near the top of script. If the git repo is in a sub directory set that in the `dir` then run `./gitpillage.sh`
 
 ## Contributors ##
-@wraithgar
+[wraithgar]
 
 ## License ##
 
