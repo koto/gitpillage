@@ -1,23 +1,57 @@
 #!/bin/bash
 
-## Edit Me ##
-host="www.example.com/"   # Trailing / is required
-dir="" # example blog/
+if [[ -z $1 ]]; then
+    cat<<EOF
+Usage:
+    $0 hostname/directory
+    (directory is optional)
+Example:
+    $0 www.example.com/images (would crawl http://example.com/images/.git/)
+    $0 www.example.com (would crawl http://example.com/.git/)
+EOF
+exit 1
+else
+    #Parse out directories and build base url
+    if [[ $1 =~ "/" ]] ; then
+        HOST=${1%%/*}
+        DIR=${1#*/}
+    else
+        HOST=$1
+        DIR=""
+    fi
+    if [[ -e $DIR ]]; then
+        BASEURL="http://${HOST}/.git/"
+    else
+        BASEURL="http://${HOST}/${DIR}/.git/"
+    fi
+fi
 
-## 
-baseurl="http://${host}${dir}.git/"
+CURL_AVAILABLE=`which curl`
+WGET_AVAILABLE=`which wget`
+if [[ -z $CURL_AVAILABLE && -z $WGET_AVAILABLE ]]; then
+    echo "Unable to find useable http client (need curl or wget)"
+    exit 1
+elif [ -e $WGET_AVAILABLE ]; then
+    CRAWLER='curl'
+else
+    CRAWLER='wget'
+fi
 
 OFS=$IFS
 export IFS="/"
-count=0
-for word in $dir; do
-    let count=$count+1
+DIR_COUNT=0
+for word in $DIR; do
+    let DIR_COUNT=$DIR_COUNT+1
 done
 export IFS=$OFS
 
 # FUNCTIONS HERP DERP
 function get {
-    wget $baseurl$1 -x -nH --cut-dirs=$count
+    if [ '$CRAWLER' == 'wget' ]; then
+        wget $BASEURL$1 -x -nH --cut-dirs=$DIR_COUNT
+    else
+        curl $BASEURL$1 -s -S --create-dirs -o .git/$1
+    fi
 }
 
 function getsha {
@@ -29,8 +63,8 @@ function getsha {
 #####################
 
 # 1 - git init
-git init ${host}
-cd ${host}
+git init ${HOST}
+cd ${HOST}
 
 #2 - get static files
 get "HEAD"
