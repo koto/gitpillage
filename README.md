@@ -23,6 +23,16 @@ Example:
     `gitpillage.sh www.example.com (would crawl http://example.com/.git/)`
 
 
+## WTF does this mean ##
+
+``
+cat: Moved: No such file or directory
+cat: Permanently</h1>: No such file or directory
+cat: document: No such file or directory
+cat: (Unix): No such file or directory
+``
+
+Chances are you are getting hit with a redirect. If you are trying to pillage example.com try www.example.com instead.
 
 ## Contributors ##
 [Michael Garvin](http://github.com/wraithgar)
