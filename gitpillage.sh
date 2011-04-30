@@ -80,6 +80,10 @@ getsha `cat .git/$ref`
 #5 - get index
 get "index"
 
+echo "About to make `git ls-files|wc -l` requests to ${HOST}; This could take a while"
+read -p "Do you want to continue? (y/n)"
+[ "$REPLY" == "y" ] || exit
+
 #6 - Try and download objects based on sha values
 for line in `git ls-files --stage|awk '{print $2}'`
 do
@@ -105,4 +109,3 @@ for line in `git ls-files`
 do
     git checkout $line
 done
-
