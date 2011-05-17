@@ -32,9 +32,9 @@ if [[ -z $CURL_AVAILABLE && -z $WGET_AVAILABLE ]]; then
     echo "Unable to find useable http client (need curl or wget)"
     exit 1
 elif [ -e $WGET_AVAILABLE ]; then
-    CRAWLER='curl'
-else
     CRAWLER='wget'
+else
+    CRAWLER='curl'
 fi
 
 OFS=$IFS
